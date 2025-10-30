@@ -1,0 +1,261 @@
+/* GÉNÉRAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Chillax-Light', sans-serif;
+  background-color: #2f2f2f;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+  background-color: rgba(81, 46, 130, 0.65);
+  backdrop-filter: blur(10px);
+  transition: top 0.7s ease, opacity 0.7s ease, background-color 1s ease;
+  z-index: 1000;
+  opacity: 1;
+}
+
+header.transparent {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+header.hidden {
+  top: -100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Categorie {
+  flex: 1 1 auto;
+  max-width: 200px;
+  text-align: center;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  background: linear-gradient(90deg, rgba(212, 102, 242, 1) 0%, rgba(210, 94, 242, 0.59) 48%, rgba(190, 19, 237, 1) 100%);
+  background-size: 200% 100%;
+  background-position: left;
+  transition: transform 0.5s ease, background-position 0.5s ease;
+  font-family: 'Chillax-Medium', sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+
+.Categorie:hover {
+  transform: scale(1.05);
+  background-position: right;
+}
+
+.Titre {
+  flex: 0 0 auto;
+  font-size: 1.8rem;
+  font-family: 'Chillax-Regular', sans-serif;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* LANDING */
+.landing {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../images/b865d5c292d8f094a905ba1cc44b4a7c5c20cfee.webp');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.landing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.landing h2 {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-family: 'Chillax-Regular', sans-serif;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+  padding: 0 2rem;
+}
+
+/* MAIN */
+.main {
+  padding: 5% 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.Présentation, .Actualitée, .monitoring {
+  margin-top: 2rem;
+}
+
+.SousTitre {
+  margin-bottom: 2rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  background: linear-gradient(90deg, rgba(212, 102, 242, 1) 0%, rgba(190, 19, 237, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.serveur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.serveur a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  min-width: 150px;
+  padding: 2rem;
+  background-color: #e2e2e2;
+  border: solid 2px black;
+  border-radius: 15px;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.serveur a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1024px) {
+  header {
+    padding: 1.2rem 3%;
+    gap: 2%;
+  }
+  
+  .Titre {
+    font-size: 1.5rem;
+  }
+  
+  .Categorie {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .main {
+    padding: 5% 5%;
+    gap: 4rem;
+  }
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem 3%;
+    gap: 0.8rem;
+  }
+  
+  .Categorie {
+    max-width: 100%;
+    width: 200px;
+    font-size: 1rem;
+  }
+  
+  .Titre {
+    font-size: 1.5rem;
+    order: -1;
+  }
+  
+  .main {
+    padding: 8% 5%;
+    gap: 3rem;
+  }
+  
+  .serveur {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .serveur a {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  p {
+    text-align: left;
+  }
+}
+
+/* RESPONSIVE PETIT MOBILE */
+@media (max-width: 480px) {
+  header {
+    padding: 0.8rem 2%;
+  }
+  
+  .Categorie {
+    width: 160px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .Titre {
+    font-size: 1.3rem;
+  }
+  
+  .landing h2 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .main {
+    padding: 10% 4%;
+    gap: 2.5rem;
+  }
+  
+  .SousTitre {
+    margin-bottom: 1.5rem;
+  }
+}
