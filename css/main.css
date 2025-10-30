@@ -23,12 +23,13 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 3%;
+  gap: 5%;
   background-color: rgba(81, 46, 130, 0.65);
   backdrop-filter: blur(10px);
   transition: top 0.7s ease, opacity 0.7s ease, background-color 1s ease;
   z-index: 1000;
   opacity: 1;
+  text-decoration: none;
 }
 
 header.transparent {
@@ -44,7 +45,8 @@ header.hidden {
 
 .Categorie {
   flex: 1 1 auto;
-  max-width: 200px;
+  max-width: 400px;
+  max-height: 100%;
   text-align: center;
   padding: 0.8rem 1.5rem;
   border-radius: 20px;
@@ -53,7 +55,7 @@ header.hidden {
   background-position: left;
   transition: transform 0.5s ease, background-position 0.5s ease;
   font-family: 'Chillax-Medium', sans-serif;
-  font-size: 1.1rem;
+  font-size: 2rem;
   cursor: pointer;
   text-decoration: none;
   color: #fff;
@@ -168,6 +170,107 @@ p {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* DISCORD CARD */
+.card-container {
+  perspective: 1000px;
+}
+
+.card {
+  margin-top: 10%;
+  align-self: center;
+  position: relative;
+  width: 30vh;
+  height: 15vh;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+  border: 2px #1f1f1f8f;
+}
+
+.card:hover {
+  transform: rotateY(30deg);
+  box-shadow: 15px 15px 15px #1f1f1f8f;
+  border: 2px solid #1f1f1f8f;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.front {
+  background: #2b2d31;
+  color: white;
+}
+
+.back {
+  background: #1e1f22;
+  color: #b9bbbe;
+  transform: rotateY(180deg);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  padding-left: 2%;
+  margin-bottom: 5%;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  margin-right: 12px;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 2%;
+}
+
+.stats {
+  font-size: 1.2rem;
+  color: #b9bbbe;
+}
+
+.join-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  width: 90%;
+  background: #23a55a;
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  z-index: 10;
+  margin-left: 1%;
+}
+
+.join-btn:hover {
+  transform: scale(1.1);
+}
+
 /* RESPONSIVE TABLET */
 @media (max-width: 1024px) {
   header {
@@ -180,13 +283,35 @@ p {
   }
   
   .Categorie {
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding: 0.6rem 1.2rem;
   }
   
   .main {
     padding: 5% 5%;
     gap: 4rem;
+  }
+
+  .card {
+    width: 40vh;
+    height: 18vh;
+  }
+
+  .icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .name {
+    font-size: 1.3rem;
+  }
+
+  .stats {
+    font-size: 1rem;
+  }
+
+  .join-btn {
+    font-size: 1.3rem;
   }
 }
 
@@ -227,6 +352,51 @@ p {
   p {
     text-align: left;
   }
+
+  .card {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    min-height: 200px;
+    margin-top: 5%;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  .content {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .icon {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .info {
+    text-align: center;
+  }
+
+  .name {
+    font-size: 1.2rem;
+  }
+
+  .stats {
+    font-size: 0.9rem;
+  }
+
+  .join-btn {
+    font-size: 1.1rem;
+    height: auto;
+    padding: 1rem;
+    width: 85%;
+  }
 }
 
 /* RESPONSIVE PETIT MOBILE */
@@ -257,5 +427,28 @@ p {
   
   .SousTitre {
     margin-bottom: 1.5rem;
+  }
+
+  .card {
+    width: 95%;
+    min-height: 180px;
+  }
+
+  .icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .name {
+    font-size: 1rem;
+  }
+
+  .stats {
+    font-size: 0.8rem;
+  }
+
+  .join-btn {
+    font-size: 1rem;
+    padding: 0.8rem;
   }
 }

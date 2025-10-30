@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft - Contact</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../Chillax_Complete/Fonts/WEB/css/chillax.css">
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="Categorie">Utilisation</a>
+        <h1 class="Titre">Nom du serveur</h1>
+        <a href="contact.html" class="Categorie">Nous contacter</a>
+    </header>
+    <main>
+        <div class="landing">
+            <h2>Comment nous contacter</h2>
+        </div>
+        <div class="main">
+            <div class="card" id="card">
+                <div class="content">
+                    <img class="icon" id="icon" src="" alt="Icône Discord">
+                    <div class="info">
+                        <div class="name" id="name">Première année IUT Info</div>
+                        <div class="stats" id="stats">À voir sur le serveur</div>
+                    </div>
+                </div>
+                <a id="join" class="join-btn" href="#" target="_blank">Aller sur le serveur</a>
+            </div>
+        </div>
+    </main>
+    <script src="../js/main.js"></script>
+    <script>
+        (async () => {
+            const inviteCode = "WrEuYEw6ax";
+            const res = await fetch(`https://discord.com/api/v10/invites/${inviteCode}?with_counts=true`);
+            const data = await res.json();
+            const guild = data.guild;
+            
+            document.getElementById("name").textContent = guild.name;
+            document.getElementById("stats").textContent = `${data.approximate_presence_count} en ligne · ${data.approximate_member_count} membres`;
+            
+            // Icône
+            if (guild.icon) {
+                document.getElementById("icon").src = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=512`;
+            }
+            
+            // Bouton d'invitation
+            document.getElementById("join").href = `https://discord.gg/${inviteCode}`;
+        })();
+    </script>
+</body>
+</html>
