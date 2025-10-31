@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
+    const homeContainer = document.querySelector('.home-container');
     let lastScrollTop = 0;
-    
-    // Fonction de gestion du défilement
+    let timer;
+
+    // --- Fonction de gestion du défilement ---
     function checkScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
@@ -24,18 +26,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         lastScrollTop = scrollTop;
     }
-    
+
+    // --- Gestion du scroll principal ---
     window.addEventListener('scroll', checkScroll);
     checkScroll(); // Initialisation de l'état du header
-    
+
     // --- Partie Inactivité Souris ---
-    let timer;
-    
     function changeHeaderState() {
         header.classList.remove('solid');
         header.classList.add('hidden');
     }
-    
+
     function resetTimer() {
         clearTimeout(timer);
         
@@ -56,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
+
     document.addEventListener('mousemove', resetTimer);
     document.addEventListener('scroll', resetTimer);
     resetTimer();
     // --- Fin Partie Inactivité Souris ---
-    
+
     // --- Scrolling agréable ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // --- Chargement lent des images (lazy loading) ---
     const images = document.querySelectorAll('img[data-src]');
     
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             img.src = src;
         }
     }
-    
+
     // --- Boutons interactifs ---
     document.querySelectorAll('.bouton a').forEach(item => {
         item.addEventListener('click', function(e) {
@@ -124,5 +125,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    });
+
+    // --- Gestion supplémentaire du scroll pour le homeContainer ---
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            header.classList.add('hidden');
+            homeContainer.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+            homeContainer.classList.remove('hidden');
+        }
+        
+        lastScroll = currentScroll;
     });
 });

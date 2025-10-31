@@ -74,6 +74,67 @@ header.hidden {
   white-space: nowrap;
 }
 
+/* HOME CONTAINER */
+.home-container {
+  position: fixed;
+  top: calc(1.5rem + 3rem + 1.6rem + 1.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.8rem;
+  background-color: rgba(110, 74, 160, 0.674);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  transition: top 0.7s ease, opacity 0.7s ease, background-color 1s ease;
+  z-index: 999;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6vh;
+  height: 6vh;
+}
+
+.home-container.transparent {
+  background-color: transparent;
+}
+
+.home-container.hidden {
+  top: -100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.home-container .home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.home-container img {
+  height: 4vh;
+  min-height: 30px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.home-container:hover {
+  background-color: rgba(102, 46, 145, 0.674);
+}
+
+.home-container:hover img {
+  transform: scale(1.15);
+  filter: brightness(1.2);
+}
+
+/* HOME DANS HEADER - Masqué par défaut sur desktop */
+.home-mobile {
+  display: none;
+}
+
+.home-desktop {
+  display: none;
+}
+
 /* LANDING */
 .landing {
   position: relative;
@@ -313,7 +374,15 @@ p {
   .join-btn {
     font-size: 1.3rem;
   }
-}
+
+  .home-container {
+    height: 4vh;
+    width: 4vh;
+  }
+
+  .home-container img {
+  height: 2vh;
+  }
 
 /* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
@@ -332,6 +401,23 @@ p {
   .Titre {
     font-size: 1.5rem;
     order: -1;
+  }
+
+  /* Masquer home-container et afficher home-mobile dans header */
+  .home-container {
+    display: none;
+  }
+
+  .home-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+  }
+
+  .home-mobile img {
+    height: 4vh;
+    min-height: 30px;
   }
   
   .main {
@@ -414,6 +500,11 @@ p {
   .Titre {
     font-size: 1.3rem;
   }
+
+  .home-mobile img {
+    height: 3.5vh;
+    min-height: 28px;
+  }
   
   .landing h2 {
     font-size: 2rem;
@@ -451,4 +542,5 @@ p {
     font-size: 1rem;
     padding: 0.8rem;
   }
+}
 }
